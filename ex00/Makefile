@@ -25,7 +25,7 @@ RM			=	rm -rf
 all:	$(NAME)
 
 $(NAME): $(INC) $(OBJ)
-	$(CC) -o $(NAME) $(CFLAGS) $(INC) $(SRC)
+	$(CC) -o $(NAME) $(CFLAGS) $(SRC)
 
 clean:
 	$(RM) $(OBJ)
