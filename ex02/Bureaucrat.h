@@ -6,7 +6,7 @@
 /*   By: nomargen <nomargen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:29:35 by nomargen          #+#    #+#             */
-/*   Updated: 2022/10/19 22:13:10 by nomargen         ###   ########.fr       */
+/*   Updated: 2022/10/24 21:58:03 by nomargen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef BUREAUCRAT_H
@@ -31,6 +31,8 @@ public:
 
     void        incrementGrade();
     void        decrementGrade();
+
+    void        executeForm( const Form& form ) const;  
 
     void        signForm( Form& form );
 

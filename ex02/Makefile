@@ -6,7 +6,7 @@
 #    By: nomargen <nomargen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/27 19:32:48 by nomargen          #+#    #+#              #
-#    Updated: 2022/10/19 22:13:05 by nomargen         ###   ########.fr        #
+#    Updated: 2022/10/24 21:58:07 by nomargen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ CC			=	c++
 
 CFLAGS		=	-Wall -Werror -Wextra -std=c++98
 
-SRC			=	main.cpp Bureaucrat.cpp Form.cpp
+SRC			=	main.cpp Bureaucrat.cpp Form.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
 
-INC			=	Bureaucrat.h Form.h
+INC			=	Bureaucrat.h Form.h PresidentialPardonForm.h RobotomyRequestForm.h ShrubberyCreationForm.h
 
 RM			=	rm -rf
 

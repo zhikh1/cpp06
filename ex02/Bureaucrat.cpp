@@ -6,7 +6,7 @@
 /*   By: nomargen <nomargen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:29:42 by nomargen          #+#    #+#             */
-/*   Updated: 2022/10/19 22:13:09 by nomargen         ###   ########.fr       */
+/*   Updated: 2022/10/24 21:58:03 by nomargen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Bureaucrat.h"
@@ -55,6 +55,14 @@ void    Bureaucrat::signForm( Form& form ) {
         std::cout << *this << " signed " << form.getName() << std::endl;
     } catch (Form::GradeTooLowException &e) {
         std::cout << name << " coulnd't sign " << form.getName() << " because " << e.what() << std::endl;
+    }
+}
+
+void    Bureaucrat::executeForm( const Form& form ) const {
+    try {
+        form.execute( *this );
+    } catch ( std::exception& e ) {
+        std::cout << name << " couldn't execute " << form.getName() << " because " << e.what() << std::endl;
     }
 }
 

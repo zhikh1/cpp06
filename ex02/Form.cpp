@@ -6,19 +6,19 @@
 /*   By: nomargen <nomargen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 21:30:58 by nomargen          #+#    #+#             */
-/*   Updated: 2022/10/19 22:13:08 by nomargen         ###   ########.fr       */
+/*   Updated: 2022/10/24 21:58:05 by nomargen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Form.h"
 
-Form::Form( const std::string& name, int gradeToSign ) : name( name ), gradeToSign( gradeToSign ), gradeToExecute( 0 ) {
-    if ( gradeToSign < 1 )
+Form::Form( const std::string& name, int gradeToSign, int gradeToExecute ): name(name), gradeToSign(gradeToSign), gradeToExecute(gradeToExecute) {
+    if ( gradeToSign < 1 || gradeToExecute < 1 )
         throw Form::GradeTooHighException();
-    if ( gradeToSign > 150 )
+    if ( gradeToSign > 150 || gradeToExecute > 150 )
         throw Form::GradeTooLowException();
 }
 
-Form::Form( const Form& other ) : name( other.getName() ), gradeToSign( other.getGradeToSign() ), gradeToExecute( other.getGradeToExecute() ) {}
+Form::Form( const Form& other ): name( other.getName() ), gradeToSign( other.getGradeToSign() ), gradeToExecute( other.getGradeToExecute() ) {}
 
 Form::~Form() {}
 
