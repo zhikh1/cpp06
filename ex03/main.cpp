@@ -6,7 +6,7 @@
 /*   By: nomargen <nomargen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:36:16 by nomargen          #+#    #+#             */
-/*   Updated: 2022/10/24 22:16:58 by nomargen         ###   ########.fr       */
+/*   Updated: 2022/10/24 22:29:47 by nomargen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Bureaucrat.h"
@@ -14,9 +14,18 @@
 #include "ShrubberyCreationForm.h"
 #include "RobotomyRequestForm.h"
 #include "PresidentialPardonForm.h"
+#include "Intern.h"
 
 int main( void )
 {
+    
+    Intern  someRandomIntern;
+    Form*   rrf;
+
+    // rrf = someRandomIntern.makeForm("wrong request", "Bender");
+    rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+    delete rrf;    
+
     try {
         Bureaucrat bureaucrat("Manager", 2); // error with 200
         ShrubberyCreationForm form1("Shrubbery");
@@ -38,5 +47,6 @@ int main( void )
     } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
     }
+
     return (0);
 }
