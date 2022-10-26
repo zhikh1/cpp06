@@ -6,19 +6,19 @@
 #    By: nomargen <nomargen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/27 19:32:48 by nomargen          #+#    #+#              #
-#    Updated: 2022/10/19 22:13:13 by nomargen         ###   ########.fr        #
+#    Updated: 2022/10/25 21:01:25 by nomargen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	bureaucrat
+NAME		=	castprinter
 
 CC			=	c++
 
 CFLAGS		=	-Wall -Werror -Wextra -std=c++98
 
-SRC			=	main.cpp Bureaucrat.cpp
+SRC			=	main.cpp CastPrinter.cpp
 
-INC			=	Bureaucrat.h 
+INC			=	CastPrinter.h
 
 RM			=	rm -rf
 
