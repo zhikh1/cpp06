@@ -1,36 +1,13 @@
-#include "A.h"
 
-A::A( void )
-{
-	if (Base::verbose)
-		std::cout << "Default constructor for A called" << std::endl;
-	return;
-}
+#ifndef A_H
+#define A_H
 
-A::A( A const & src )
-{
-	if (Base::verbose)
-		std::cout << "Copy constructor for A called" << std::endl;
-	*this = src;
-	return;
-}
+#include "Base.h"
 
-A::~A( void )
-{
-	return;
-}
+class A : public Base {
+public:
+    A();
+    ~A();
+};
 
-A &	A::operator=( A const & rhs )
-{
-	(void)rhs;
-	if (Base::verbose)
-		std::cout << "Assignement operator for A called" << std::endl;
-	return *this;
-}
-
-std::ostream &	operator<<( std::ostream & ostr, A const & instance)
-{
-	(void)instance;
-	ostr << "No value for A" << std::endl;
-	return ostr;
-}
+#endif

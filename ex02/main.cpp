@@ -9,27 +9,74 @@
 /*   Updated: 2022/10/25 21:01:55 by nomargen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "Base.h"
+#include "A.h"
+#include "B.h"
+#include "C.h"
+
 #include <iostream>
-#include <stdint.h>
-#include "structs.h"
+#include <cstdlib>
 
-uintptr_t	serialize(Data *ptr){
-	return (reinterpret_cast<uintptr_t>(ptr));
+Base* generate() {
+	std::srand(time(NULL));
+
+	int n = rand() % 3;
+	switch (n) {
+		case 0:
+			std::cout << "generated an A class" << std::endl;
+			return new A;
+		case 1:
+			std::cout << "generated an B class" << std::endl;
+			return new B;
+		case 2:
+			std::cout << "generated an C class" << std::endl;
+			return new C;
+	}
+
+	std::cout << "some very weird error ocurred: can't generate a class" << std::endl;
+	return NULL;
 }
 
-Data	*deserialize(uintptr_t raw){
-	return (reinterpret_cast<Data *>(raw));
+void identify(Base* p) {
+	if (dynamic_cast<A*>(p) != NULL) {
+		std::cout << "A class was identified" << std::endl;
+	} else if (dynamic_cast<B*>(p) != NULL) {
+		std::cout << "B class was identified" << std::endl;
+	} else if (dynamic_cast<C*>(p) != NULL) {
+		std::cout << "C class was identified" << std::endl;
+	} else {
+		std::cout << "Can't identify the class" << std::endl;
+	}
 }
 
-int	main( void ){
-	Data		*etalon_data = new Data;
-	Data		*ser_data;
-	uintptr_t	tmp;
+void identify(Base& p) {
+	try {
+		A& aux = dynamic_cast<A&>(p); (void)aux;
+		std::cout << "A class was identified" << std::endl;
+		return;
+	} catch (...) {}
 
-	etalon_data->data = "Etalon Data content";
+	try {
+		B& aux = dynamic_cast<B&>(p); (void)aux;
+		std::cout << "B class was identified" << std::endl;
+		return;
+	} catch (...) {}
 
-	std::cout << "Data before serialization = " << etalon_data->data << std::endl;
-	tmp = serialize(etalon_data);
-	ser_data = deserialize(tmp);
-	std::cout << "Data after  serialization = " << ser_data->data << std::endl;
+	try {
+		C& aux = dynamic_cast<C&>(p); (void)aux;
+		std::cout << "C class was identified" << std::endl;
+		return;
+	} catch (...) {}
+
+	std::cout << "Can't identify the class" << std::endl;
+}
+
+int main() {
+	Base *base;
+
+	base = generate();
+	identify(base); // pointer
+	identify(*base); // reference
+
+	return 0;
 }
