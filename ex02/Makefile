@@ -16,9 +16,9 @@ CC			=	c++
 
 CFLAGS		=	-Wall -Werror -Wextra -std=c++98
 
-SRC			=	main.cpp 
+SRC			=	main.cpp  Base.cpp A.cpp B.cpp C.cpp
 
-INC			=	structs.h
+INC			=	Base.h A.h B.h C.h
 
 RM			=	rm -rf
 

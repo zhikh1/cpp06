@@ -17,17 +17,18 @@ int main( int argc, char *argv[] )
     CastPrinter print;
     if (argc == 2)
     {
-        std::cout << "int: ";
+        std::cout << "char:\t";
+        print.toChar(argv[1]);
+
+        std::cout << "int:\t";
         print.toInt(argv[1]);
         
-        std::cout << "float: ";
+        std::cout << "float:\t";
         print.toFloat(argv[1]);
         
-        std::cout << "double: ";
+        std::cout << "double:\t";
         print.toDouble(argv[1]);
         
-        std::cout << "char: ";
-        print.toChar(argv[1]);
     }
     else
         std::cout << "Bad args!" << std::endl;

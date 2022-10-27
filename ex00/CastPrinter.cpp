@@ -102,7 +102,7 @@ double	CastPrinter::toDouble(std::string str){
 
 char	CastPrinter::toChar(std::string str){
     int tmp = toInt(str, false);
-	char ret = tmp;
+	char ret = static_cast<char>(tmp);
 	NumType numType =  getNumType(str);
 
 	if (tmp >= 0 && tmp < 256 && numType != ERR)
