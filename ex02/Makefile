@@ -6,11 +6,11 @@
 #    By: nomargen <nomargen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/27 19:32:48 by nomargen          #+#    #+#              #
-#    Updated: 2022/10/25 21:01:25 by nomargen         ###   ########.fr        #
+#    Updated: 2022/10/29 17:41:34 by nomargen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	castprinter
+NAME		=	dyncast
 
 CC			=	c++
 
@@ -18,7 +18,7 @@ CFLAGS		=	-Wall -Werror -Wextra -std=c++98
 
 SRC			=	main.cpp
 
-INC			=	Base.h A.h B.h C.h
+INC			=	
 
 RM			=	rm -rf
 

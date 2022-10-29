@@ -5,78 +5,91 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nomargen <nomargen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/19 20:36:16 by nomargen          #+#    #+#             */
-/*   Updated: 2022/10/25 21:01:55 by nomargen         ###   ########.fr       */
+/*   Created: 2022/10/29 17:32:11 by nomargen          #+#    #+#             */
+/*   Updated: 2022/10/29 18:47:50 by nomargen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "Base.h"
-#include "A.h"
-#include "B.h"
-#include "C.h"
-
 #include <iostream>
 #include <cstdlib>
 
-Base* generate() {
-	std::srand(time(NULL));
+#define CNT (5)
 
-	int n = rand() % 3;
-	switch (n) {
+class Base { public: virtual ~Base() {} };
+class A : public Base {};
+class B : public Base {};
+class C : public Base {};
+
+Base*   generate( void ) {
+	int seed = std::rand() % 3;
+	switch (seed)
+	{
 		case 0:
-			std::cout << "generated an A class" << std::endl;
-			return new A;
+			return (new A);
 		case 1:
-			std::cout << "generated an B class" << std::endl;
-			return new B;
+			return (new B);
 		case 2:
-			std::cout << "generated an C class" << std::endl;
-			return new C;
-	}
-
-	std::cout << "some very weird error ocurred: can't generate a class" << std::endl;
-	return NULL;
-}
-
-void identify(Base* p) {
-	if (dynamic_cast<A*>(p) != NULL) {
-		std::cout << "A class was identified" << std::endl;
-	} else if (dynamic_cast<B*>(p) != NULL) {
-		std::cout << "B class was identified" << std::endl;
-	} else if (dynamic_cast<C*>(p) != NULL) {
-		std::cout << "C class was identified" << std::endl;
-	} else {
-		std::cout << "Can't identify the class" << std::endl;
+			return (new C);
+		default:
+			return (0);
 	}
 }
 
-void identify(Base& p) {
-	try {
-		A& aux = dynamic_cast<A&>(p); (void)aux;
-		std::cout << "A class was identified" << std::endl;
-		return;
-	} catch (...) {}
-
-	try {
-		B& aux = dynamic_cast<B&>(p); (void)aux;
-		std::cout << "B class was identified" << std::endl;
-		return;
-	} catch (...) {}
-
-	try {
-		C& aux = dynamic_cast<C&>(p); (void)aux;
-		std::cout << "C class was identified" << std::endl;
-		return;
-	} catch (...) {}
-
-	std::cout << "Can't identify the class" << std::endl;
+void    identify( Base* p ) {
+    if ( dynamic_cast< A* >( p ) )
+        std::cout << "A" << std::endl;
+    else if ( dynamic_cast< B* >( p ) )
+        std::cout << "B" << std::endl;
+    else if ( dynamic_cast< C* >( p ) )
+        std::cout << "C" << std::endl;
+    else
+        std::cout << "unknown" << std::endl;
 }
 
-int main() {
-	Base *base;
+void    identify( Base& p ) {
+    try {
+        A& a = dynamic_cast< A& >( p );
+        std::cout << "A" << std::endl;
+        (void)a;
+    } catch(const std::exception& e) {}
+    try {
+        B& b = dynamic_cast< B& >( p );
+        std::cout << "B" << std::endl;
+        (void)b;
+    } catch( const std::exception& e ) {}
+    try {
+        C& c = dynamic_cast< C& >( p );
+        std::cout << "C" << std::endl;
+        (void)c;
+    } catch( const std::exception& e ) {}
+}
 
-	base = generate();
-	identify(base); // pointer
-	identify(*base); // reference
+int     main( void )
+{
+	Base*   randObject[CNT];
+	int i = 0;
 
-	return 0;
+	try {
+		for (i = 0; i < CNT; i++)
+			randObject[i] = generate();
+	}
+    catch(const std::exception& e) 
+    {
+    	std::cout << e.what() << std::endl;
+    	for ( ; i >= 0; i--)
+    		delete randObject[i];
+    	return 1;
+    }
+
+    
+	for (i = 0 ; i < CNT; i++)
+	{
+		std::cout << "(Base*)   randObject[" << i << "] = "; identify( randObject[i] );
+    	std::cout << "(Base&)  *randObject[" << i << "] = "; identify( *(randObject[i]) );
+    	std::cout << std::endl;
+   	}
+    
+    for (i = 0; i < CNT; i++)
+    		delete randObject[i];
+
+    return (0);
 }
